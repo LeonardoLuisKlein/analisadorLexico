@@ -11,10 +11,12 @@ function App() {
 
   function handleAddPalavras(palavra) {
     setPalavras((palavras) => [...palavras, palavra]);
+    console.log(palavras);
   }
 
   function handleDeletePalavra(index) {
     setPalavras((palavras) => palavras.filter((_, i) => i !== index));
+    console.log(palavras);
   }
 
   return (

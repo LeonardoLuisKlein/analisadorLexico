@@ -1,10 +1,26 @@
-.lista {
-  width: 40%;
-  padding: 4rem 0;
+.container {
   display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  gap: 3.2rem;
-  border: 1px solid #ccc;
+  flex-wrap: wrap;
+  border: 2px solid #ccc;
   border-radius: 5px;
+  padding: 16px;
+  margin: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 40%;
+}
+
+.lista {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  padding: 0;
+}
+
+.listaTitle {
+  width: 100%;
+}
+
+.descricao {
+  text-align: center;
 }

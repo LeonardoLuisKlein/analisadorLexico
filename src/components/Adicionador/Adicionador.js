@@ -23,7 +23,7 @@ function Adicionador({ onAddPalavras, palavra, setPalavra }) {
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
       <div className={styles.inputContainer}>
-        <label>Adicione palavras para o banco do analisador</label>
+        <p>Adicione palavras para o banco do analisador</p>
         <input
           className={!erro ? styles.input : styles.inputError}
           type="text"

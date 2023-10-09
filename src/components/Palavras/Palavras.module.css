@@ -1,0 +1,23 @@
+.card {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardText {
+  font-size: 0.9rem;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
