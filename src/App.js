@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Adicionador from "./components/Adicionador/Adicionador";
 import ListaPalavras from "./components/ListaPalavras/ListaPalavras";
@@ -11,13 +11,15 @@ function App() {
 
   function handleAddPalavras(palavra) {
     setPalavras((palavras) => [...palavras, palavra]);
-    console.log(palavras);
   }
 
   function handleDeletePalavra(index) {
     setPalavras((palavras) => palavras.filter((_, i) => i !== index));
-    console.log(palavras);
   }
+
+  useEffect(() => {
+    console.log(palavras);
+  }, [palavras]);
 
   return (
     <div className="App">
