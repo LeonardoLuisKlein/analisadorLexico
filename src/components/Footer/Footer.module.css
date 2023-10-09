@@ -1,0 +1,18 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #424242;
+  height: 3vh;
+  color: #dddddd;
+  gap: 7px;
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+  font-size: 0.8rem;
+}
+
+.footerLink {
+  color: #dddddd;
+  transition: 0.5s;
+}
