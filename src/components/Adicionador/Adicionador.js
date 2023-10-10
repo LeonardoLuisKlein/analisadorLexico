@@ -1,24 +1,43 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./Adicionador.module.css";
 
-function Adicionador({ onAddPalavras, palavra, setPalavra }) {
+function Adicionador({
+  onAddPalavras,
+  palavra,
+  setPalavra,
+  palavras,
+  setPalavras,
+}) {
   const [erro, setErro] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
+    setErrorMessage("A");
 
     if (!palavra || /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/\s]/.test(palavra)) {
       setErro(true);
+      setErrorMessage(
+        "Apenas uma palavra, sem números ou caracteres especiais"
+      );
       return;
     }
 
-    const novaPalavra = [palavra];
+    if (palavras.includes(palavra)) {
+      setErro(true);
+      setErrorMessage("Palavra duplicada");
+      return;
+    }
 
-    onAddPalavras(novaPalavra);
+    onAddPalavras(palavra);
 
     setPalavra("");
     setErro(false);
   }
+
+  useEffect(() => {
+    console.log("Estado de palavras:", palavras);
+  }, [palavras]);
 
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
@@ -31,13 +50,9 @@ function Adicionador({ onAddPalavras, palavra, setPalavra }) {
           value={palavra}
           onChange={(e) => setPalavra(e.target.value)}
         />
-        {erro ? (
-          <span className={styles.erro}>
-            Apenas uma palavra, sem números ou caracteres especiais
-          </span>
-        ) : (
-          <span></span>
-        )}
+        <span className={erro ? styles.erro : styles.erroSem}>
+          {errorMessage}
+        </span>
       </div>
       <button className={styles.button}>Adicionar</button>
     </form>

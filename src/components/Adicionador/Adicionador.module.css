@@ -8,7 +8,7 @@
   margin: 10px;
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 30%;
+  width: 20%;
 }
 
 .inputContainer {
@@ -19,10 +19,17 @@
 
 .erro {
   color: #de0100;
+  visibility: visible;
+  font-size: 0.9rem;
+}
+
+.erroSem {
+  color: #de0100;
+  visibility: hidden;
 }
 
 .input {
-  width: 30%;
+  width: 70%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -32,7 +39,7 @@
 }
 
 .inputError {
-  width: 30%;
+  width: 70%;
   padding: 10px;
   border: 1px solid #de0100;
   border-radius: 4px;

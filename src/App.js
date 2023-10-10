@@ -4,17 +4,28 @@ import Adicionador from "./components/Adicionador/Adicionador";
 import ListaPalavras from "./components/ListaPalavras/ListaPalavras";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
+import Verificacao from "./components/Verificacao/Verificacao";
 
 function App() {
   const [palavra, setPalavra] = useState("");
   const [palavras, setPalavras] = useState([]);
+  const [verifica, setVerifica] = useState("");
 
   function handleAddPalavras(palavra) {
-    setPalavras((palavras) => [...palavras, palavra]);
+    console.log(palavras + "1");
+    if (!palavras.includes(palavra)) {
+      setPalavras((palavras) => [...palavras, palavra]);
+      console.log(palavras + "2");
+    }
+    console.log(palavras + "3");
   }
 
   function handleDeletePalavra(index) {
     setPalavras((palavras) => palavras.filter((_, i) => i !== index));
+  }
+
+  function handleVerificaPalavra(verifica) {
+    console.log("Verificado: " + verifica);
   }
 
   useEffect(() => {
@@ -29,6 +40,7 @@ function App() {
           palavra={palavra}
           palavras={palavras}
           setPalavra={setPalavra}
+          setPalavras={setPalavras}
           onAddPalavras={handleAddPalavras}
         />
         <ListaPalavras
@@ -36,6 +48,11 @@ function App() {
           onDeletePalavra={handleDeletePalavra}
         />
       </div>
+      <Verificacao
+        verifica={verifica}
+        setVerifica={setVerifica}
+        onVerificaPalavra={handleVerificaPalavra}
+      />
       <Footer />
     </div>
   );
