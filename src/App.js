@@ -5,6 +5,7 @@ import ListaPalavras from "./components/ListaPalavras/ListaPalavras";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Verificacao from "./components/Verificacao/Verificacao";
+import Tabela from "./components/Tabela/Tabela";
 
 function App() {
   const [palavra, setPalavra] = useState("");
@@ -12,12 +13,9 @@ function App() {
   const [verifica, setVerifica] = useState("");
 
   function handleAddPalavras(palavra) {
-    console.log(palavras + "1");
     if (!palavras.includes(palavra)) {
       setPalavras((palavras) => [...palavras, palavra]);
-      console.log(palavras + "2");
     }
-    console.log(palavras + "3");
   }
 
   function handleDeletePalavra(index) {
@@ -48,11 +46,15 @@ function App() {
           onDeletePalavra={handleDeletePalavra}
         />
       </div>
-      <Verificacao
-        verifica={verifica}
-        setVerifica={setVerifica}
-        onVerificaPalavra={handleVerificaPalavra}
-      />
+      <div className="linhaPalavras">
+        <Verificacao
+          verifica={verifica}
+          setVerifica={setVerifica}
+          onVerificaPalavra={handleVerificaPalavra}
+        />
+        <Tabela palavras={palavras} />
+      </div>
+
       <Footer />
     </div>
   );

@@ -1,0 +1,19 @@
+.tabelaPalavras {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  padding: 16px;
+}
+
+.tabelaPalavras th,
+.tabelaPalavras td {
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 5px;
+}
+
+.tabelaPalavras td[data-presente="true"] {
+  background-color: #00cc00;
+  font-weight: bold;
+  color: #fff;
+}
