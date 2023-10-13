@@ -1,8 +1,7 @@
 .tabelaPalavras {
-  width: 100%;
+  width: 70%;
   border-collapse: collapse;
   font-family: Arial, sans-serif;
-  padding: 16px;
 }
 
 .tabelaPalavras th,
@@ -13,7 +12,14 @@
 }
 
 .tabelaPalavras td[data-presente="true"] {
-  background-color: #00cc00;
   font-weight: bold;
   color: #fff;
+}
+
+.letra-correspondente {
+  background-color: green;
+}
+
+.letra-nao-correspondente {
+  background-color: red;
 }

@@ -11,24 +11,42 @@ function App() {
   const [palavra, setPalavra] = useState("");
   const [palavras, setPalavras] = useState([]);
   const [verifica, setVerifica] = useState("");
+  const [letras, setLetras] = useState([]);
 
   function handleAddPalavras(palavra) {
     if (!palavras.includes(palavra)) {
       setPalavras((palavras) => [...palavras, palavra]);
     }
+
+    const letrasDaPalavra = palavra.split("");
+    setLetras((letras) => [...letras, ...letrasDaPalavra]);
   }
 
   function handleDeletePalavra(index) {
     setPalavras((palavras) => palavras.filter((_, i) => i !== index));
+
+    const novasLetras = [...letras];
+    const letrasDaPalavra = palavras[index].split("");
+    for (const letra of letrasDaPalavra) {
+      const letraIndex = novasLetras.indexOf(letra);
+      if (letraIndex !== -1) {
+        novasLetras.splice(letraIndex, 1);
+      }
+    }
+    setLetras(novasLetras);
   }
 
-  function handleVerificaPalavra(verifica) {
-    console.log("Verificado: " + verifica);
+  function handleVerificaPalavra(input) {
+    setVerifica(input);
+
+    if (palavras.includes(input.trim())) {
+      console.log("Palavra verificada: " + input);
+    }
   }
 
   useEffect(() => {
-    console.log(palavras);
-  }, [palavras]);
+    console.log(letras);
+  }, [letras]);
 
   return (
     <div className="App">
@@ -52,7 +70,7 @@ function App() {
           setVerifica={setVerifica}
           onVerificaPalavra={handleVerificaPalavra}
         />
-        <Tabela palavras={palavras} />
+        <Tabela palavras={palavras} letras={letras} />
       </div>
 
       <Footer />

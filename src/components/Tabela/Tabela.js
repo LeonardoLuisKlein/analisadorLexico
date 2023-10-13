@@ -1,28 +1,34 @@
 import styles from "./Tabela.module.css";
 
-function Tabela({ palavras }) {
+function Tabela({ letras }) {
   const alfabeto = "abcdefghijklmnopqrstuvwxyz";
 
   return (
     <table className={styles.tabelaPalavras}>
       <thead>
         <tr>
-          <th>δ</th>
+          <th className={styles.labelaColuna}>δ</th>
           {alfabeto.split("").map((letra) => (
-            <th key={letra}>{letra}</th>
+            <th key={letra} className={styles.labelaColuna}>
+              {letra}
+            </th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {palavras.map((palavra, index) => (
+        {letras.map((letra, index) => (
           <tr key={index}>
             <td>{`q${index}`}</td>{" "}
             {alfabeto.split("").map((letraAlfabeto) => (
               <td
                 key={letraAlfabeto}
-                data-presente={palavra.includes(letraAlfabeto)}
+                className={
+                  letra.includes(letraAlfabeto)
+                    ? styles["letra-correspondente"]
+                    : styles["letra-nao-correspondente"]
+                }
               >
-                {palavra.includes(letraAlfabeto) ? "X" : ""}
+                {letra.includes(letraAlfabeto) ? `q${index + 1}` : ""}
               </td>
             ))}
           </tr>
