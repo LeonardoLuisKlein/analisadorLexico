@@ -1,37 +1,37 @@
 import { useState, useEffect } from "react";
 import styles from "./Adicionador.module.css";
 
-function Adicionador({
-  onAddPalavras,
-  palavra,
-  setPalavra,
-  palavras,
-  setPalavras,
-}) {
+function Adicionador({ onAddPalavras, setPalavra, palavras }) {
   const [erro, setErro] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [palavraInput, setPalavraInput] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
     setErrorMessage("A");
-
-    if (!palavra || /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/\s]/.test(palavra)) {
+    palavraInput.toLowerCase();
+    if (
+      !palavraInput ||
+      /[0-9!@#$%^&*()_+{}[\]:;<>,.?~\\/\s]/.test(palavraInput) ||
+      /[A-Z]/.test(palavraInput)
+    ) {
       setErro(true);
       setErrorMessage(
-        "Apenas uma palavra, sem números ou caracteres especiais"
+        "Apenas uma palavra, letra minuscula, sem números ou caracteres especiais"
       );
       return;
     }
 
-    if (palavras.includes(palavra)) {
+    if (palavras.includes(palavraInput)) {
       setErro(true);
       setErrorMessage("Palavra duplicada");
       return;
     }
 
-    onAddPalavras(palavra);
+    onAddPalavras(palavraInput);
 
     setPalavra("");
+    setPalavraInput("");
     setErro(false);
   }
 
@@ -47,14 +47,16 @@ function Adicionador({
           className={!erro ? styles.input : styles.inputError}
           type="text"
           placeholder="Digite uma palavra"
-          value={palavra}
-          onChange={(e) => setPalavra(e.target.value)}
+          value={palavraInput}
+          onChange={(e) => setPalavraInput(e.target.value)}
         />
         <span className={erro ? styles.erro : styles.erroSem}>
           {errorMessage}
         </span>
       </div>
-      <button className={styles.button}>Adicionar</button>
+      <button className={styles.button} type="submit">
+        Adicionar
+      </button>
     </form>
   );
 }
