@@ -14,9 +14,8 @@ function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
           ...prevPalavrasVerificadas,
           { palavra: currentInput, isValid },
         ]);
-        inputRef.current.blur();
       }
-
+      setVerifica("");
       if (inputRef.current && currentInput) {
         inputRef.current.blur();
       }
@@ -44,7 +43,12 @@ function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
         <p>Palavras Testadas</p>
         <ul className={styles.lista}>
           {palavraVerificada.map((item, index) => (
-            <li key={index}>
+            <li
+              key={index}
+              className={
+                item.isValid ? styles.palavraValida : styles.palavraInvalida
+              }
+            >
               {item.palavra} - {item.isValid ? "Válida" : "Inválida"}
             </li>
           ))}

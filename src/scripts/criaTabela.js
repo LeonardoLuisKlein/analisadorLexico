@@ -1,31 +1,31 @@
 export function criaTabela(tokens) {
-  let states = [[]];
-  let step = 0;
+  let estados = [[]];
+  let passos = 0;
 
   for (let i = 0; i < tokens.length; i++) {
-    let currentStep = 0;
+    let currentpassos = 0;
     let palavra = tokens[i];
 
     for (let j = 0; j < palavra.length; j++) {
       let letra = palavra[j];
 
-      if (typeof states[currentStep][letra] === "undefined") {
-        let nextStep = step + 1;
+      if (typeof estados[currentpassos][letra] === "undefined") {
+        let nextpassos = passos + 1;
 
-        states[currentStep][letra] = nextStep;
-        states[nextStep] = [];
+        estados[currentpassos][letra] = nextpassos;
+        estados[nextpassos] = [];
 
-        step = currentStep = nextStep;
+        passos = currentpassos = nextpassos;
       } else {
-        currentStep = states[currentStep][letra];
+        currentpassos = estados[currentpassos][letra];
       }
 
       if (j === palavra.length - 1) {
-        states[currentStep]["end"] = true;
+        estados[currentpassos]["end"] = true;
       } else {
-        states[currentStep]["end"] = false;
+        estados[currentpassos]["end"] = false;
       }
     }
   }
-  return states;
+  return estados;
 }

@@ -62,8 +62,7 @@ function App() {
         />
         <Tabela palavra={verifica} tabela={tabela} />
       </div>
-
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
