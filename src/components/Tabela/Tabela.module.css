@@ -1,25 +1,26 @@
 .tabelaPalavras {
-  width: 70%;
   border-collapse: collapse;
   font-family: Arial, sans-serif;
+  height: 10%;
+  margin-right: 20px;
+  margin-bottom: 20px;
 }
 
 .tabelaPalavras th,
 .tabelaPalavras td {
   border: 1px solid #ccc;
   text-align: center;
-  padding: 5px;
+  padding: 20px;
 }
 
-.tabelaPalavras td[data-presente="true"] {
-  font-weight: bold;
-  color: #fff;
+.letraCerta {
+  background-color: #18e018;
 }
 
-.letra-correspondente {
-  background-color: green;
+.letraErrada {
+  background-color: #e01515;
 }
 
-.letra-nao-correspondente {
-  background-color: red;
+.letraNula {
+  background-color: transparent;
 }

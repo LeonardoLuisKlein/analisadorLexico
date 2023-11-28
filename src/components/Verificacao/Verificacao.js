@@ -1,10 +1,24 @@
+import { useRef, useState } from "react";
 import styles from "./Verificacao.module.css";
 
 function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
+  const [palavraVerificada, setPalavraVerificada] = useState([]);
+  const [currentInput, setCurrentInput] = useState("");
+  const inputRef = useRef(null);
   const handleVerifica = (e) => {
     if (e.keyCode === 32) {
-      onVerificaPalavra(verifica);
+      const isValid = onVerificaPalavra(verifica);
+
+      if (currentInput.trim() !== "") {
+        setPalavraVerificada((prevPalavrasVerificadas) => [
+          ...prevPalavrasVerificadas,
+          { palavra: currentInput, isValid },
+        ]);
+      }
       setVerifica("");
+      if (inputRef.current && currentInput) {
+        inputRef.current.blur();
+      }
     }
   };
 
@@ -13,13 +27,14 @@ function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
       <div className={styles.inputContainer}>
         <p>Digite o automato</p>
         <input
+          ref={inputRef}
           className={styles.input}
           type="text"
           placeholder="Espaço para terminar"
           value={verifica}
           onChange={(e) => {
+            setCurrentInput(e.target.value);
             setVerifica(e.target.value);
-            console.log(verifica);
           }}
           onKeyDown={handleVerifica}
         />
@@ -27,10 +42,16 @@ function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
       <div>
         <p>Palavras Testadas</p>
         <ul className={styles.lista}>
-          <li>Teste</li>
-          <li>Testando</li>
-          <li>Testansky</li>
-          <li>Testezin</li>
+          {palavraVerificada.map((item, index) => (
+            <li
+              key={index}
+              className={
+                item.isValid ? styles.palavraValida : styles.palavraInvalida
+              }
+            >
+              {item.palavra} - {item.isValid ? "Válida" : "Inválida"}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
