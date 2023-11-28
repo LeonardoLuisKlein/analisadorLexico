@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Adicionador from "./components/Adicionador/Adicionador";
 import ListaPalavras from "./components/ListaPalavras/ListaPalavras";
-import Footer from "./components/Footer/Footer";
+// import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Verificacao from "./components/Verificacao/Verificacao";
 import Tabela from "./components/Tabela/Tabela";
@@ -26,11 +26,9 @@ function App() {
 
   function handleVerificaPalavra(input) {
     setVerifica(input);
-
-    const isWordInList = palavras.includes(input.trim());
+    const palavraLista = palavras.includes(input.trim());
     console.log("Palavra verificada: " + input);
-
-    return isWordInList;
+    return palavraLista;
   }
 
   useEffect(() => {

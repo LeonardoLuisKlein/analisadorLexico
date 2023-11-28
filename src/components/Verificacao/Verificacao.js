@@ -3,20 +3,19 @@ import styles from "./Verificacao.module.css";
 
 function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
   const [palavraVerificada, setPalavraVerificada] = useState([]);
-  const [currentInput, setCurrentInput] = useState("");
+  const [verificador, setVerificador] = useState("");
   const inputRef = useRef(null);
   const handleVerifica = (e) => {
     if (e.keyCode === 32) {
-      const isValid = onVerificaPalavra(verifica);
-
-      if (currentInput.trim() !== "") {
+      const valido = onVerificaPalavra(verifica);
+      if (verificador.trim() !== "") {
         setPalavraVerificada((prevPalavrasVerificadas) => [
           ...prevPalavrasVerificadas,
-          { palavra: currentInput, isValid },
+          { palavra: verificador, valido },
         ]);
       }
       setVerifica("");
-      if (inputRef.current && currentInput) {
+      if (inputRef.current && verificador) {
         inputRef.current.blur();
       }
     }
@@ -33,7 +32,7 @@ function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
           placeholder="Espaço para terminar"
           value={verifica}
           onChange={(e) => {
-            setCurrentInput(e.target.value);
+            setVerificador(e.target.value);
             setVerifica(e.target.value);
           }}
           onKeyDown={handleVerifica}
@@ -46,10 +45,10 @@ function Verificacao({ verifica, setVerifica, onVerificaPalavra }) {
             <li
               key={index}
               className={
-                item.isValid ? styles.palavraValida : styles.palavraInvalida
+                item.valido ? styles.palavraValida : styles.palavraInvalida
               }
             >
-              {item.palavra} - {item.isValid ? "Válida" : "Inválida"}
+              {item.palavra} - {item.valido ? "Válida" : "Inválida"}
             </li>
           ))}
         </ul>
