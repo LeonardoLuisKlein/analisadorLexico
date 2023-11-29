@@ -6,8 +6,8 @@
   height: 3vh;
   color: #dddddd;
   gap: 7px;
-  bottom: 0;
   position: absolute;
+  bottom: 0;
   width: 100%;
   font-size: 0.8rem;
 }

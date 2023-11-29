@@ -4,13 +4,14 @@
   height: 10%;
   margin-right: 20px;
   margin-bottom: 20px;
+  width: 10vw;
 }
 
 .tabelaPalavras th,
 .tabelaPalavras td {
   border: 1px solid #ccc;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 .letraCerta {
